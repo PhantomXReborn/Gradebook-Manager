@@ -1,0 +1,112 @@
+================================================================================
+                    GRADEBOOK MANAGER - HINTS
+================================================================================
+
+SEGMENT 1: Student struct
+================================================================================
+struct Student {
+    string name;
+    int id;
+    vector<double> grades;  // Add this line
+};
+
+SEGMENT 2: calculateAverage()
+================================================================================
+double calculateAverage(const vector<double>& grades) {
+    if (grades.empty()) return 0;
+    
+    double sum = 0;
+    for (double grade : grades) {
+        sum += grade;
+    }
+    return sum / grades.size();
+}
+
+SEGMENT 3: letterGrade()
+================================================================================
+char letterGrade(double average) {
+    if (average >= 90) return 'A';
+    else if (average >= 80) return 'B';
+    else if (average >= 70) return 'C';
+    else if (average >= 60) return 'D';
+    else return 'F';
+}
+
+SEGMENT 4: calculateClassAverage()
+================================================================================
+double calculateClassAverage(const vector<Student>& students) {
+    if (students.empty()) return 0;
+    
+    double total = 0;
+    for (const Student& s : students) {
+        total += calculateAverage(s.grades);
+    }
+    return total / students.size();
+}
+
+SEGMENT 5: findTopStudent()
+================================================================================
+Student findTopStudent(const vector<Student>& students) {
+    if (students.empty()) {
+        Student empty;
+        empty.name = "None";
+        return empty;
+    }
+    
+    Student top = students[0];
+    double topAvg = calculateAverage(top.grades);
+    
+    for (const Student& s : students) {
+        double avg = calculateAverage(s.grades);
+        if (avg > topAvg) {
+            top = s;
+            topAvg = avg;
+        }
+    }
+    return top;
+}
+
+SEGMENT 6: displayGradeDistribution()
+================================================================================
+void displayGradeDistribution(const vector<Student>& students) {
+    int A = 0, B = 0, C = 0, D = 0, F = 0;
+    
+    for (const Student& s : students) {
+        double avg = calculateAverage(s.grades);
+        char grade = letterGrade(avg);
+        switch(grade) {
+            case 'A': A++; break;
+            case 'B': B++; break;
+            case 'C': C++; break;
+            case 'D': D++; break;
+            case 'F': F++; break;
+        }
+    }
+    
+    cout << "\n=== GRADE DISTRIBUTION ===" << endl;
+    cout << "A: " << string(A, '*') << " (" << A << ")" << endl;
+    cout << "B: " << string(B, '*') << " (" << B << ")" << endl;
+    cout << "C: " << string(C, '*') << " (" << C << ")" << endl;
+    cout << "D: " << string(D, '*') << " (" << D << ")" << endl;
+    cout << "F: " << string(F, '*') << " (" << F << ")" << endl;
+}
+
+SEGMENT 7: Menu options for adding grades
+================================================================================
+else if (choice == 2) {
+    int id;
+    double grade;
+    cout << "Student ID: "; cin >> id;
+    cout << "Grade to add: "; cin >> grade;
+    
+    bool found = false;
+    for (auto& s : students) {
+        if (s.id == id) {
+            s.grades.push_back(grade);
+            cout << "Grade added!" << endl;
+            found = true;
+            break;
+        }
+    }
+    if (!found) cout << "Student not found!" << endl;
+}

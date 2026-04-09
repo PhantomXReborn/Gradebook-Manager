@@ -1,0 +1,109 @@
+================================================================================
+                    GRADEBOOK MANAGER - TUTORIAL
+================================================================================
+
+STEP 1: UNDERSTAND THE GOAL (5 minutes)
+================================================================================
+Manage student grades with:
+- Add students with name and ID
+- Add multiple grades per student
+- Calculate averages and letter grades
+- Class statistics and distribution
+
+STEP 2: COMPLETE MISSING SEGMENTS (40 minutes)
+================================================================================
+[ ] Segment 1: Add grades vector to Student struct
+[ ] Segment 2: calculateAverage() from vector
+[ ] Segment 3: letterGrade() based on average
+[ ] Segment 4: calculateClassAverage()
+[ ] Segment 5: findTopStudent()
+[ ] Segment 6: displayGradeDistribution()
+[ ] Segment 7: Complete menu (add grades, view, etc.)
+
+STEP 3: TEST EACH FUNCTION (10 minutes)
+================================================================================
+Test averages:
+Grades [85, 90, 95] → Average = 90.0 → Letter 'A'
+
+Test class stats:
+Student A: 85 avg, Student B: 75 avg → Class avg = 80
+
+Test distribution:
+Two A's, one C → "A: ** (2)", "C: * (1)"
+
+STEP 4: EXPECTED OUTPUT EXAMPLE
+================================================================================
+=== GRADEBOOK MANAGER ===
+
+1. Add Student
+Choice: 1
+Name: Alice Smith
+ID: 1001
+Student added!
+
+1. Add Student
+Choice: 1
+Name: Bob Jones
+ID: 1002
+Student added!
+
+Choice: 2
+Student ID: 1001
+Grade to add: 85
+Grade added!
+Grade to add: 90
+Grade added!
+
+Choice: 4
+Student ID: 1001
+
+=== STUDENT REPORT ===
+Name: Alice Smith
+ID: 1001
+Grades: 85 90
+Average: 87.50
+Letter Grade: B
+
+Choice: 5
+=== CLASS SUMMARY ===
+Total Students: 2
+Class Average: 81.25
+Top Student: Alice Smith (87.50)
+
+Choice: 6
+=== GRADE DISTRIBUTION ===
+A:  (0)
+B: * (1)
+C:  (0)
+D: * (1)
+F:  (0)
+
+STEP 5: COMMON MISTAKES
+================================================================================
+MISTAKE: calculateAverage divides by zero
+FIX: Check if grades.empty() before dividing
+
+MISTAKE: findTopStudent modifies original
+FIX: Use const reference and copy for return
+
+MISTAKE: Grade distribution switch missing break
+FIX: Add break after each case
+
+STEP 6: EXTENSION CHALLENGES
+================================================================================
+EASY:
+- Add drop lowest grade feature
+- Add pass/fail option
+- Sort students by name or average
+
+MEDIUM:
+- Implement weighted grading (tests 50%, homework 30%, etc.)
+- Add CSV import/export
+- Calculate median and standard deviation
+
+HARD:
+- Add assignment categories with different weights
+- Generate report cards as text files
+- Add GUI with Qt
+
+================================================================================
